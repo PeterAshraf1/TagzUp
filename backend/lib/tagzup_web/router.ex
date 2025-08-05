@@ -12,18 +12,32 @@ defmodule TagzUpWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
+    plug AshAuthentication.Plug
   end
 
   scope "/", TagzUpWeb do
     pipe_through :browser
 
     get "/", PageController, :home
+    live "/admin", AdminLive
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", TagzUpWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", TagzUpWeb.API do
+    pipe_through :api
+
+    post "/auth/register", AuthController, :register
+    post "/auth/login", AuthController, :login
+    get "/auth/me", AuthController, :me
+
+    get "/influencers", InfluencerController, :index
+    get "/influencers/featured", InfluencerController, :featured
+    get "/influencers/:id", InfluencerController, :show
+
+    get "/bookings", BookingController, :index
+    post "/bookings", BookingController, :create
+    get "/bookings/:id", BookingController, :show
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:tagzup, :dev_routes) do

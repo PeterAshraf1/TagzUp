@@ -1,10 +1,10 @@
-# lib/tagzup/bookings.ex
-
 defmodule TagzUp.Bookings do
   use Ash.Domain
 
   resources do
-    # We'll add resources here later
-    # For now, keep it empty so it doesn't break
+    resource TagzUp.Bookings.Booking
+    resource TagzUp.Bookings.Payment
+    resource TagzUp.Bookings.Proof
+    resource TagzUp.Bookings.Dispute
   end
 end

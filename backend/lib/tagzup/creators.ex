@@ -1,10 +1,10 @@
-# lib/tagzup/creators.ex
-
 defmodule TagzUp.Creators do
   use Ash.Domain
 
   resources do
-    # We'll add resources here later
-    # For now, keep it empty so it doesn't break
+    resource TagzUp.Creators.InfluencerProfile
+    resource TagzUp.Creators.SocialAccount
+    resource TagzUp.Creators.Package
+    resource TagzUp.Creators.Review
   end
 end
