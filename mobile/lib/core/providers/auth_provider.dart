@@ -1,10 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../constants/app_constants.dart';
 import '../models/user.dart';
 import '../services/api_service.dart';
+
+part 'auth_provider.freezed.dart';
 
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
   return AuthNotifier();
